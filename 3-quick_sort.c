@@ -8,14 +8,13 @@
  * @rigth: to-do
  * @size: to-do
  */
-size_t partition(int *array, size_t left, size_t rigth, size_t size)
+size_t partition(int *array, int left, int rigth, size_t size)
 {
 	int pivot = array[rigth];
 	int tmp;
-	size_t pichu = left - 1, i;
+	int pichu = (int)left - 1;
+	int i;
 
-	if (left == 0)
-		pichu = 0;
 	for (i = left; i < rigth; i++)
 	{
 		if (array[i] < pivot)
@@ -41,9 +40,9 @@ size_t partition(int *array, size_t left, size_t rigth, size_t size)
  * @rigth: to-do
  * @size: to-do
  */
-void quicksort(int *array, size_t left, size_t rigth, size_t size)
+void quicksort(int *array, int left, int rigth, size_t size)
 {
-	size_t idx = 0;
+	int idx = 0;
 
 	if (left < rigth)
 	{
