@@ -1,44 +1,41 @@
 #include "sort.h"
 
 /**
- * partition - sorts an array of integers in ascending order
- * using the Quick sort algorithm
- * @array: the array to be sorted
- * @left: to-do
- * @rigth: to-do
- * @size: to-do
+ * lomuto_partition - splits the array using the Lomuto's partition scheme
+ * @array: the array to be splited
+ * @left: the first index in the current partition of the array
+ * @rigth: the last index in the current partition of the array
+ * @size: number of elements in @array
+ * Return: index for the new partition of the array
  */
-size_t partition(int *array, int left, int rigth, size_t size)
+size_t lomuto_partition(int *array, int left, int rigth, size_t size)
 {
 	int pivot = array[rigth];
-	int tmp;
-	int pichu = (int)left - 1;
-	int i;
+	int i, pichu = left - 1;
 
 	for (i = left; i < rigth; i++)
 	{
 		if (array[i] < pivot)
 		{
 			pichu++;
-			tmp = array[pichu];
-			array[pichu] = array[i];
-			array[i] = tmp;
+			swap(array, pichu, i);
+			if (array[pichu] != array[i])
+				print_array(array, size);
 		}
 	}
-	tmp = array[pichu + 1];
-	array[pichu + 1] = array[rigth];
-	array[rigth] = tmp;
-	print_array(array, size);
-	return (pichu + 1);
+	swap(array, pichu + 1, rigth);
+	if (array[++pichu] != array[rigth])
+		print_array(array, size);
+	return (pichu);
 }
 
 /**
  * quicksort - sorts an array of integers in ascending order
  * using the Quick sort algorithm
  * @array: the array to be sorted
- * @left: to-do
- * @rigth: to-do
- * @size: to-do
+ * @left: the first index in the current partition of the array
+ * @rigth: the last index in the current partition of the array
+ * @size: number of elements in @array
  */
 void quicksort(int *array, int left, int rigth, size_t size)
 {
@@ -46,7 +43,7 @@ void quicksort(int *array, int left, int rigth, size_t size)
 
 	if (left < rigth)
 	{
-		idx = partition(array, left, rigth, size);
+		idx = lomuto_partition(array, left, rigth, size);
 		quicksort(array, left, idx - 1, size);
 		quicksort(array, idx + 1, rigth, size);
 	}
