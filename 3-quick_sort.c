@@ -1,4 +1,5 @@
 #include "sort.h"
+#include"aux_functions.c"
 
 /**
  * lomuto_partition - splits the array using the Lomuto's partition scheme
