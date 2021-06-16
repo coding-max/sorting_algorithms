@@ -5,7 +5,6 @@
  * using TopDown merge sort algorithm
  * @arr_o: the array to be sorted
  * @arr_c: number of elements in @array
- * @size: number of elements in @array
  * @idx_l: number of elements in @array
  * @idx_m: idk
  * @idx_r: number of elements in @array
@@ -15,11 +14,11 @@ void merge_topdown(int *arr_o, int *arr_c,
 {
 	int i, j, k;
 
-	i = idx_l, j = idx_m , k = idx_l;
+	i = idx_l, j = idx_m, k = idx_l;
 
-	for(k = idx_l; k < idx_r; k++)
+	for (k = idx_l; k < idx_r; k++)
 	{
-		if(i < idx_m && (j >= idx_r || arr_o[i] <= arr_o[j]))
+		if (i < idx_m && (j >= idx_r || arr_o[i] <= arr_o[j]))
 		{
 			arr_c[k] = arr_o[i];
 			i++;
@@ -39,7 +38,6 @@ void merge_topdown(int *arr_o, int *arr_c,
  * using TopDown merge sort algorithm
  * @arr_o: the array to be sorted
  * @arr_c: number of elements in @array
- * @size: number of elements in @array
  * @idx_l: number of elements in @array
  * @idx_r: number of elements in @array
  */
@@ -48,13 +46,13 @@ void merge_recursive(int *arr_o, int *arr_c,
 {
 	int idx_m;
 
-	if(idx_r - idx_l <= 1)
+	if (idx_r - idx_l <= 1)
 		return;
 
 	idx_m = (idx_r + idx_l) / 2;
 
 	merge_recursive(arr_c, arr_o, idx_l, idx_m);
-	merge_recursive(arr_c, arr_o, idx_m , idx_r);
+	merge_recursive(arr_c, arr_o, idx_m, idx_r);
 	printf("Merging...\n");
 	printf("[left]: ");
 	print_array(arr_c + idx_l, idx_m - idx_l);
